@@ -1,0 +1,45 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.4'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.bms'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(23)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		url "https://repo.akka.io/maven"
+	}
+}
+
+def versions = [
+		ScalaBinary: "2.13"
+]
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation platform("com.typesafe.akka:akka-bom_${versions.ScalaBinary}:2.9.5")
+	implementation "com.typesafe.akka:akka-actor-typed_${versions.ScalaBinary}"
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
