@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: messaging
+
+grpc:
+  service:
+    port: 16507

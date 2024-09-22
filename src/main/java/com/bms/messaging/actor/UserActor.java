@@ -21,6 +21,7 @@ public class UserActor extends AbstractBehavior<Message> {
     private final ActorRef<Receptionist.Listing> listingResponseAdapter;
     public UserActor(ActorContext<Message> context, String actorId) {
         super(context);
+        context.getLog().info("Actor with userId {} has been registered", actorId);
         this.actorId = actorId;
         this.listingResponseAdapter = context.messageAdapter(Receptionist.Listing.class, ListResponse::new);
     }
