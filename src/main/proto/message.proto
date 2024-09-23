@@ -8,13 +8,7 @@ option java_package = "com.message.v1";
 import "google/protobuf/empty.proto";
 
 service MessageService {
-  rpc Register(RegisterRequest) returns (google.protobuf.Empty);
-
   rpc SendMessage(stream SendMessageRequest) returns (stream Message);
-}
-
-message RegisterRequest {
-  string user_id = 1;
 }
 
 message SendMessageRequest {

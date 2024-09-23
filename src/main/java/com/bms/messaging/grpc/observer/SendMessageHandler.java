@@ -1,6 +1,7 @@
 package com.bms.messaging.grpc.observer;
 
-import com.bms.messaging.ManagerService;
+import com.bms.messaging.service.ManagerService;
+import com.bms.messaging.entity.ReceiveMessage;
 import com.bms.messaging.grpc.GrpcStubRegistry;
 import com.message.v1.Message;
 import com.message.v1.SendMessageRequest;
@@ -35,5 +36,13 @@ public class SendMessageHandler implements StreamObserver<SendMessageRequest> {
             GrpcStubRegistry.OBSERVER_REGISTRY.remove(userId);
 
         this.responseObserver.onCompleted();
+    }
+
+    public void sendMessage(ReceiveMessage message) {
+        this.responseObserver.onNext(Message.newBuilder()
+            .setFromUserId(message.getFrom())
+            .setToUserId(message.getTo())
+            .setContent(message.getContent())
+            .build());
     }
 }

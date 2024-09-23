@@ -1,4 +1,4 @@
-package com.bms.messaging;
+package com.bms.messaging.service;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.ActorSystem;

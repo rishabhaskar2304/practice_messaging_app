@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package message.v1;
+
+option java_multiple_files = true;
+option java_package = "com.message.v1";
+
+import "google/protobuf/empty.proto";
+
+service UserService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+}
+
+
+message RegisterRequest {
+  string name = 1;
+  string email_id = 2;
+}
+
+message RegisterResponse {
+  string user_id = 1;
+}
