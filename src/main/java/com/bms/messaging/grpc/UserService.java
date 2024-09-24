@@ -1,5 +1,7 @@
 package com.bms.messaging.grpc;
 
+import com.bms.messaging.persistence.UserEntity;
+import com.bms.messaging.persistence.UserRepository;
 import com.bms.messaging.service.ManagerService;
 import com.bms.messaging.util.IdUtil;
 import com.message.v1.RegisterRequest;
@@ -14,11 +16,18 @@ import net.devh.boot.grpc.server.service.GrpcService;
 public class UserService extends UserServiceImplBase {
 
   private final ManagerService managerService;
+  private final UserRepository userRepository;
 
   @Override
   public void register(RegisterRequest request, StreamObserver<RegisterResponse> responseObserver) {
     String userId = IdUtil.getId();
     managerService.registerUser(userId);
+
+    userRepository.save(UserEntity.builder()
+            .username(request.getName())
+            .emailId(request.getEmailId())
+            .userId(userId)
+            .build());
 
     responseObserver.onNext(RegisterResponse.newBuilder()
         .setUserId(userId).build());

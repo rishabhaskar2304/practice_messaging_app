@@ -1,7 +1,7 @@
 package com.bms.messaging.grpc.observer;
 
 import com.bms.messaging.service.ManagerService;
-import com.bms.messaging.entity.ReceiveMessage;
+import com.bms.messaging.dto.ReceiveMessage;
 import com.bms.messaging.grpc.GrpcStubRegistry;
 import com.message.v1.Message;
 import com.message.v1.SendMessageRequest;

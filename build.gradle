@@ -34,6 +34,10 @@ def versions = [
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.oracle.database.jdbc:ojdbc11'
+
 	implementation platform("com.typesafe.akka:akka-bom_${versions.ScalaBinary}:2.9.5")
 	implementation "com.typesafe.akka:akka-actor-typed_${versions.ScalaBinary}"
 
@@ -65,6 +69,10 @@ protobuf {
 			grpc {}
 		}
 	}
+}
+
+tasks.named('bootRun') {
+	jvmArgs '-Dnetworkaddress.cache.ttl=0'
 }
 
 tasks.named('test') {

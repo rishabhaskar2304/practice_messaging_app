@@ -1,4 +1,4 @@
-package com.bms.messaging.entity;
+package com.bms.messaging.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

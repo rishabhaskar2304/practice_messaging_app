@@ -5,8 +5,8 @@ import akka.actor.typed.javadsl.AbstractBehavior;
 import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
-import com.bms.messaging.entity.Message;
-import com.bms.messaging.entity.RegisterUser;
+import com.bms.messaging.dto.Message;
+import com.bms.messaging.dto.RegisterUser;
 
 public class ManagerActor extends AbstractBehavior<Message> {
     public ManagerActor(ActorContext<Message> context) {

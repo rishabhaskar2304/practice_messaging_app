@@ -8,10 +8,10 @@ import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 import akka.actor.typed.receptionist.Receptionist;
 import akka.actor.typed.receptionist.ServiceKey;
-import com.bms.messaging.entity.ListResponse;
-import com.bms.messaging.entity.Message;
-import com.bms.messaging.entity.ReceiveMessage;
-import com.bms.messaging.entity.SendMessage;
+import com.bms.messaging.dto.ListResponse;
+import com.bms.messaging.dto.Message;
+import com.bms.messaging.dto.ReceiveMessage;
+import com.bms.messaging.dto.SendMessage;
 import com.bms.messaging.grpc.GrpcStubRegistry;
 import com.bms.messaging.grpc.observer.SendMessageHandler;
 import java.util.LinkedList;
@@ -74,8 +74,7 @@ public class UserActor extends AbstractBehavior<Message> {
         while (!queue.isEmpty()) {
           streamObserver.sendMessage(queue.poll());
         }
-      } catch (Exception _) {
-      }
+      } catch (Exception ignored) {}
     }
     return this;
   }

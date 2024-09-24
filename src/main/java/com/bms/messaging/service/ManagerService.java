@@ -6,9 +6,9 @@ import akka.actor.typed.javadsl.AskPattern;
 import akka.actor.typed.receptionist.Receptionist;
 import akka.actor.typed.receptionist.ServiceKey;
 import com.bms.messaging.actor.ManagerActor;
-import com.bms.messaging.entity.Message;
-import com.bms.messaging.entity.RegisterUser;
-import com.bms.messaging.entity.SendMessage;
+import com.bms.messaging.dto.Message;
+import com.bms.messaging.dto.RegisterUser;
+import com.bms.messaging.dto.SendMessage;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;

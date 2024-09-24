@@ -1,4 +1,4 @@
-package com.bms.messaging.entity;
+package com.bms.messaging.dto;
 
 import akka.actor.typed.receptionist.Receptionist;
 import lombok.Getter;

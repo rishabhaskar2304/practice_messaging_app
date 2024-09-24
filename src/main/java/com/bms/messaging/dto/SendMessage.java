@@ -1,11 +1,11 @@
-package com.bms.messaging.entity;
+package com.bms.messaging.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class ReceiveMessage implements Message {
+public class SendMessage implements Message {
     final String from;
     final String to;
     final String content;

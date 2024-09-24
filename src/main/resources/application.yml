@@ -1,6 +1,23 @@
 spring:
   application:
     name: messaging
+  datasource:
+    url: jdbc:oracle:thin:@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=${DB_PORT})(host=${DB_HOST}))(connect_data=(service_name=${DB_SERVICE_NAME}))(security=(ssl_server_dn_match=yes)))
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+    properties:
+      oracle:
+        net:
+          ssl_server_dn_match: true
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 grpc:
   service:
