@@ -9,6 +9,8 @@ import "google/protobuf/empty.proto";
 
 service UserService {
   rpc Register(RegisterRequest) returns (RegisterResponse);
+
+  rpc FindUser(FindUserRequest) returns (User);
 }
 
 
@@ -19,4 +21,14 @@ message RegisterRequest {
 
 message RegisterResponse {
   string user_id = 1;
+}
+
+message FindUserRequest {
+  string email_id = 1;
+}
+
+message User {
+  string name = 1;
+  string email_id = 2;
+  string user_id = 3;
 }

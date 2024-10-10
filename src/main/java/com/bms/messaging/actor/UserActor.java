@@ -56,7 +56,7 @@ public class UserActor extends AbstractBehavior<Message> {
   private Behavior<Message> onSendMessage(SendMessage msg) {
     ServiceKey<Message> targetKey = ServiceKey.create(Message.class, msg.getTo());
     pendingMessage = Optional.of(msg);
-    getContext().getLog().info("{} received send message request", actorId);
+//    getContext().getLog().info("{} received send message request", actorId);
     getContext().getSystem().receptionist()
         .tell(Receptionist.find(targetKey, listingResponseAdapter));
 
@@ -64,8 +64,8 @@ public class UserActor extends AbstractBehavior<Message> {
   }
 
   private Behavior<Message> onReceiveMessage(ReceiveMessage msg) {
-    getContext().getLog()
-        .info("{} received message [{}], from {}", msg.getTo(), msg.getContent(), msg.getFrom());
+//    getContext().getLog()
+//        .info("{} received message [{}], from {}", msg.getTo(), msg.getContent(), msg.getFrom());
     SendMessageHandler streamObserver = GrpcStubRegistry.OBSERVER_REGISTRY.get(
         actorId);
     queue.add(msg);
@@ -80,7 +80,7 @@ public class UserActor extends AbstractBehavior<Message> {
   }
 
   private Behavior<Message> onFind(ListResponse listingResponse) {
-    getContext().getLog().info("{} received discovery response", actorId);
+//    getContext().getLog().info("{} received discovery response", actorId);
     Receptionist.Listing listing = listingResponse.getListing();
     if (pendingMessage.isPresent()) {
       SendMessage sendMessage = pendingMessage.get();
@@ -88,7 +88,7 @@ public class UserActor extends AbstractBehavior<Message> {
           sendMessage.getTo(), sendMessage.getContent());
       ServiceKey<Message> targetKey = ServiceKey.create(Message.class, sendMessage.getTo());
       for (ActorRef<Message> serviceInstance : listing.getServiceInstances(targetKey)) {
-        getContext().getLog().info("{} sent message to receiver actor", actorId);
+//        getContext().getLog().info("{} sent message to receiver actor", actorId);
         serviceInstance.tell(receiveMessage);
       }
 

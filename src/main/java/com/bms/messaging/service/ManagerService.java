@@ -2,12 +2,12 @@ package com.bms.messaging.service;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.ActorSystem;
+import akka.actor.typed.Props;
 import akka.actor.typed.javadsl.AskPattern;
 import akka.actor.typed.receptionist.Receptionist;
 import akka.actor.typed.receptionist.ServiceKey;
-import com.bms.messaging.actor.ManagerActor;
+import com.bms.messaging.actor.UserActor;
 import com.bms.messaging.dto.Message;
-import com.bms.messaging.dto.RegisterUser;
 import com.bms.messaging.dto.SendMessage;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +16,10 @@ import java.util.concurrent.CompletionStage;
 
 @Service
 public class ManagerService {
-    public final ActorSystem<Message> system = ActorSystem.create(ManagerActor.create(), "Manager");
+    public final ActorSystem<Message> system = ActorSystem.create(UserActor.create("Manager"), "Manager");
 
     public void registerUser(String userId) {
-        system.tell(new RegisterUser(userId));
+        system.systemActorOf(UserActor.create(userId), userId, Props.empty());
     }
 
     public void sendMessage(com.message.v1.Message messageProto) {

@@ -7,9 +7,9 @@ import com.message.v1.MessageServiceGrpc;
 import com.message.v1.SendMessageRequest;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
-import net.devh.boot.grpc.server.service.GrpcService;
+import org.lognet.springboot.grpc.GRpcService;
 
-@GrpcService
+@GRpcService
 @RequiredArgsConstructor
 public class MessagingService extends MessageServiceGrpc.MessageServiceImplBase {
     private final ManagerService managerService;

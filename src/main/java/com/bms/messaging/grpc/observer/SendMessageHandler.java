@@ -20,6 +20,7 @@ public class SendMessageHandler implements StreamObserver<SendMessageRequest> {
             managerService.sendMessage(value.getMessage());
         } else {
             userId = value.getUserId();
+            managerService.registerUser(userId);
             GrpcStubRegistry.OBSERVER_REGISTRY.put(userId, this);
         }
     }
